@@ -1,1 +1,1 @@
-# my small collection of scripts
+# my and rented :) small collection of scripts
