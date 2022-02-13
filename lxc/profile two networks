@@ -1,0 +1,56 @@
+config:
+  limits.cpu: "2"
+  limits.memory: 2GB
+  limits.memory.enforce: soft
+  limits.memory.swap: "false"
+  user.network-config: |
+    version: 1
+    config:
+      - type: physical
+        name: eth0
+        subnets:
+          - type: dhcp
+      - type: physical
+        name: eth1
+        subnets:
+          - type: dhcp
+      - type: nameserver
+        address:
+          - 1.1.1.1
+          - 8.8.8.8
+  user.user-data: |
+    #cloud-config
+    users:
+    - name: madmin
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    shell: /bin/bash
+    #passwd: password
+    package_upgrade: true
+    packages:
+      - curl
+    locale: en_GB.UTF-8
+    timezone: Europe/Warsaw
+    runcmd:
+      - [touch, /tmp/tn]
+description: TwoNetworks LXD profile
+devices:
+  eth0:
+    name: eth0
+    nictype: macvlan
+    parent: enp0s10
+    type: nic
+  eth1:
+    name: eth1
+    nictype: bridged
+    parent: lxdbr0
+    type: nic
+  root:
+    path: /
+    pool: defaultsp1
+    type: disk
+    # limits.max: 50MB
+    # limits.read: 50MB
+    # limits.write: 30MB
+name: twonetworks
+used_by: []

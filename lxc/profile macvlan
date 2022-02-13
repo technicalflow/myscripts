@@ -1,0 +1,27 @@
+config:
+  limits.cpu: "2"
+  limits.memory: 2GB
+  limits.memory.enforce: soft
+  limits.memory.swap: "false"
+  user.user-data: |
+    #cloud-config
+    package_upgrade: true
+    packages:
+    - curl
+    locale: en_GB.UTF-8
+    timezone: Europe/Warsaw
+    runcmd:
+    - [touch, /tmp/one]
+description: Macvlan LXD profile
+devices:
+  eth0:
+    name: eth0
+    nictype: macvlan
+    parent: enp0s10
+    type: nic
+  root:
+    path: /
+    pool: defaultsp1
+    type: disk
+name: macvlan
+used_by: []
