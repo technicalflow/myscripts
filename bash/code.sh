@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# lxc launch images:debian/11 db11code
-# lxc config device add db11code port8080 proxy listen=tcp:0.0.0.0:8080 connect=tcp:127.0.0.1:8080
+# lxc launch images:ubuntu/bionic/cloud ub18code -p default -p cloudinit
+# lxc config device add ub18code port8080 proxy listen=tcp:0.0.0.0:8080 connect=tcp:127.0.0.1:8080
 
 apt update && apt upgrade -y
 apt install -y nano htop curl gnupg unzip

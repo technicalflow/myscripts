@@ -22,10 +22,10 @@ config:
     #cloud-config
     users:
     - name: madmin
-    sudo: ALL=(ALL) NOPASSWD:ALL
-    groups: sudo
-    shell: /bin/bash
-    #passwd: password
+      sudo: ALL=(ALL) NOPASSWD:ALL
+      groups: sudo
+      shell: /bin/bash
+      #passwd: password
     package_upgrade: true
     packages:
       - curl
