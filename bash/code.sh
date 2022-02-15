@@ -9,9 +9,10 @@ curl -fOL https://github.com/coder/code-server/releases/download/v4.0.2/code-ser
 dpkg -i code-server_4.0.2_amd64.deb
 
 sudo systemctl enable --now code-server@$USER
-curl localhost:8080
-ip a
 systemctl status code-server@$USER
-curl localhost
-curl localhost:8080
+
+ip a
+curl -s localhost:8080
+
+#check and modify password
 cat .config/code-server/config.yaml
