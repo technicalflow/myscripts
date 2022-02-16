@@ -4,9 +4,6 @@ apt update && apt install syslog-ng wget curl nano htop ufw -y
 systemctl status syslog-ng
 syslog-ng -V
 
-systemctl restart syslog-ng
-systemctl status syslog-ng
-
 # nano /etc/syslog-ng/syslog-ng.conf 
 nano /etc/syslog-ng/conf.d/basic.conf
 
@@ -32,3 +29,7 @@ log {
         source(s_linux);
         destination(d_linux_local);
 };
+
+
+systemctl restart syslog-ng
+systemctl status syslog-ng

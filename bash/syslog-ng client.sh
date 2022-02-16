@@ -2,6 +2,7 @@
 
 # Install syslog-ng
 apt update && apt install -y nano wget curl htop syslog-ng
+systemctl status syslog-ng
 
 # Check connectivity to syslog-ng server
 nc -zv 192.168.50.182 5140
@@ -31,3 +32,6 @@ log {
         source(s_auth);
         destination(d_linux);
 };
+
+
+systemctl restart syslog-ng
