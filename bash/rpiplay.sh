@@ -9,13 +9,13 @@ if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 ## git clone https://github.com/FD-/RPiPlay.git
 ## cd RPiPlay
 
-apt-get install-y curl cmake libavahi-compat-libdnssd-dev libplist-dev libssl-dev \
+apt-get install -y curl cmake libavahi-compat-libdnssd-dev libplist-dev libssl-dev \
     libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev gstreamer1.0-libav \
     gstreamer1.0-vaapi gstreamer1.0-plugins-bad
 
 curl -L --output /tmp/rpiplay.zip https://codeload.github.com/FD-/RPiPlay/zip/refs/heads/master
 unzip /tmp/rpiplay.zip -d /tmp/play
-cd /tmp/play
+cd /tmp/play/RPiPlay-master
 
 mkdir -p build 
 cd build
