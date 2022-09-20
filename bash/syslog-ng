@@ -56,3 +56,4 @@ log {
         destination(d_fw_mikrotik_local);
 };
 EOFmikrotikfwlog 
+systemctl restart syslog-ng
