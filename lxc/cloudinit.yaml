@@ -7,7 +7,7 @@ config:
         subnets:
           - type: static
             ipv4: true
-            address: 192.168.50.227
+            address: 192.168.50.220
             netmask: 255.255.255.0
             gateway: 192.168.50.100
             control: auto
@@ -17,6 +17,7 @@ config:
           - 1.1.1.1
   user.user-data: |
     #cloud-config
+    ssh_pwauth: yes
     users:
     - name: madmin
       groups: users, sudo
@@ -24,15 +25,17 @@ config:
       sudo: ALL=(ALL) NOPASSWD:ALL
       lock_passwd: false
       passwd: $6$encoded
+    package_update: true
     package_upgrade: true
+    package_reboot_if_required: true
     packages:
+    - nano
     - curl
     - gnupg
-    - nano
     locale: en_US.UTF-8
     timezone: Europe/Warsaw
     runcmd:
-    - [touch, /tmp/one]
+    - [touch, /tmp/two]
 description: CloudInit LXD profile
 devices: {}
 name: cloudinit

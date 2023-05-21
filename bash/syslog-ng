@@ -4,8 +4,7 @@ set -e
 
 # Install syslog-ng
 apt update && apt upgrade -y 
-apt install wget curl nano htop ufw
-apt install syslog-ng -y 
+apt install wget curl nano htop ufw install syslog-ng -y 
 mkdir -p /data/mikrotik && cd /data/
 chown -R root /data/mikrotik/
 mkdir -p mikrotik_logs
@@ -16,6 +15,7 @@ systemctl restart syslog-ng && systemctl status syslog-ng && syslog-ng -V
 
 #Enable Mikrotik configuration
 cat << EOFmikrotiklog > /etc/syslog-ng/conf.d/mikrotik.conf
+
 # version 1.0
 # server configuration
 

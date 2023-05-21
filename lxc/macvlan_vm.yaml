@@ -1,0 +1,54 @@
+config:
+  limits.cpu: "4"
+  limits.memory: 4GB
+  limits.memory.enforce: soft
+  limits.memory.swap: "false"
+  user.network-config: |
+    version: 2
+    ethernets:
+        eth0:
+            match:
+                name: e*
+            addresses:
+            - 192.168.50.211/24
+            nameservers:
+                addresses:
+                - 192.168.50.100
+                - 1.1.1.1
+            routes:
+            -   to: default
+                via: 192.168.50.100
+  user.user-data: |
+    #cloud-config
+    ssh_pwauth: yes
+    users:
+    - name: madmin
+      groups: users, sudo
+      shell: /bin/bash
+      sudo: ALL=(ALL) NOPASSWD:ALL
+      lock_passwd: false
+      passwd: $6$encoded
+    package_update: true
+    package_upgrade: true
+    package_reboot_if_required: true
+    packages:
+    - curl
+    - gnupg
+    - nano
+    locale: en_US.UTF-8
+    timezone: Europe/Warsaw
+    runcmd:
+    - [touch, /tmp/one]
+description: Macvlan 4G LXD profile
+devices:
+  eth0:
+    name: eth0
+    nictype: macvlan
+    parent: enp2s0f0
+    type: nic
+  root:
+    path: /
+    pool: lxdstoragepool
+    type: disk
+name: macvlan4g
+used_by: []
