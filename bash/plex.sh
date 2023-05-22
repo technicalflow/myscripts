@@ -6,13 +6,14 @@
 
 apt update && apt upgrade -y
 apt install -y nano htop curl gnupg ufw
+
 echo deb https://downloads.plex.tv/repo/deb public main | tee /etc/apt/sources.list.d/plexmediaserver.list
 curl https://downloads.plex.tv/plex-keys/PlexSign.key | apt-key add -
 # curl https://downloads.plex.tv/plex-keys/PlexSign.key > plexsign.key
 # apt-key add plexsign.key
-apt update
+
+apt update && apt install plexmediaserver
 # rm plexsign.key
-apt install plexmediaserver
 
 touch /etc/ufw/applications.d/plexmediaserver
 cat << EOFplex > /etc/ufw/applications.d/plexmediaserver
@@ -34,12 +35,11 @@ EOFplex
 
 systemctl status plex*
 
-ufw status
 netstat -lnpt | grep Plex
 ufw status verbose
 ufw allow ssh
 ufw allow plexmediaserver
-sudo ufw status verbose
+ufw status verbose
 ufw enable
 ufw status verbose
 

@@ -4,8 +4,6 @@ apt update && apt upgrade -y
 apt install -y dialog htop curl wget openssl git gnupg
 apt install -y wget apt-transport-https software-properties-common
 
-wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb" -o /tmp/packages-microsoft-prod.deb 
-
 #SSH
 systemctl enable --now sshd
 usermod -aG ssh,users madmin

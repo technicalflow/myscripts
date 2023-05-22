@@ -15,10 +15,9 @@ curl -fOL https://github.com/coder/code-server/releases/download/v${version}/cod
 dpkg -i code-server_${version}_amd64.deb
 rm code-server_${version}_amd64.deb
 
-sudo systemctl enable --now code-server@$USER
+systemctl enable --now code-server@$USER
 systemctl status code-server@$USER
 
-ip a
 curl -s localhost:8080
 
 #check and modify password
